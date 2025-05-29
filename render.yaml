@@ -1,0 +1,16 @@
+services:
+  - name: accounts
+    type: web
+    env: python
+    repo: https://github.com/onikageyoshi/E-COMMERCE_API_FORM
+    branch: main  # Change to the branch you want to deploy
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn store.wsgi:application --bind 0.0.0.0:8000"
+
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: DEBUG
+        value: "False"

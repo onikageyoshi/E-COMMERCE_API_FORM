@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+ALLOWED_HOSTS = ["E-COMMERCE_API_FORM.onrender.com", "localhost", "127.0.0.1"]
 from pathlib import Path
 import os
 from datetime import timedelta
@@ -19,7 +19,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 LOGIN_REDIRECT_URL = '/homepage/'
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/homepage/'  # Make sure homepage is defined in your URLs
+database_url = os.environ.get("DATABASE_URL")
 
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -63,6 +76,7 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
