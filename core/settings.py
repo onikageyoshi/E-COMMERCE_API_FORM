@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-ALLOWED_HOSTS = ["e-commerce-api-form.onrender.com", "localhost,127.0.0.1"]
+ALLOWED_HOSTS = ["e-commerce-api-form.onrender.com", "localhost","127.0.0.1"]
 from pathlib import Path
 import os
 from datetime import timedelta
