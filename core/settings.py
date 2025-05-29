@@ -21,6 +21,9 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/homepage/'  # Make sure homepage is defined in your URLs
 database_url = os.environ.get("DATABASE_URL")
 
+import os
+
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
