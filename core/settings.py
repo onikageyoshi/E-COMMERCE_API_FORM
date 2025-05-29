@@ -9,7 +9,13 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-ALLOWED_HOSTS = ["e-commerce-api-form.onrender.com", "localhost","127.0.0.1"]
+import os
+ALLOWED_HOSTS = [
+    "e-commerce-api-form.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
+database_url = os.environ.get("DATABASE_URL")
 from pathlib import Path
 import os
 from datetime import timedelta
@@ -29,9 +35,6 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 import dj_database_url
 
-DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///db.sqlite3', conn_max_age=600)
-}
 
 
 
@@ -93,6 +96,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'core.urls'
+CORS_ALLOWED_ORIGINS = [
+    'https://google.com',
+]
+
 
 TEMPLATES = [
     {
@@ -123,6 +130,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+CORS_ALLOW_ALL_ORIGINS = True  
 
 
 # Password validation
@@ -233,12 +241,12 @@ STRIPE_PUBLISHABLE_KEY = "pk_test_..."
 
 
 
-SECURE_HSTS_SECONDS = True
-SECURE_SSL_REDIRECT = True
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
+# SECURE_HSTS_SECONDS = True
+# SECURE_SSL_REDIRECT = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
 
 
 
